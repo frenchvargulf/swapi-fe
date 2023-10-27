@@ -1,5 +1,5 @@
 import { GameSelectors } from "cypress/selectors/selectors";
-import { MOCK_PERSONS } from "./MOCK-PERSONS";
+import { MOCK_PERSONS } from "../data/MOCK-PERSONS";
 
 describe('Game', () => {
 
