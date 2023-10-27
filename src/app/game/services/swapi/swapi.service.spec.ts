@@ -5,6 +5,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { GameComponent } from '../../game.component';
 import { PersonProperties } from '../../models/person';
 import { createPersonPropertiesMock } from '../../models/person.mock';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 describe('SwapiService', () => {
   let swapiService: SwapiService;
@@ -12,7 +13,7 @@ describe('SwapiService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
+      imports: [HttpClientTestingModule, MatSnackBarModule],
       declarations: [GameComponent]
     });
     swapiService = TestBed.inject(SwapiService);

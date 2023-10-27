@@ -11,6 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { GameModule } from './game/game.module';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { GameModule } from './game/game.module';
     MatSidenavModule,
     MatToolbarModule,
     GameModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

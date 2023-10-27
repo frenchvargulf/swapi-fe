@@ -2,13 +2,13 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
-import { GameComponent } from './game/game.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { PersonPropertiesCardComponent } from './game/person-properties-card/person-properties-card.component';
 import { MatToolbarHarness } from '@angular/material/toolbar/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { HarnessLoader } from '@angular/cdk/testing';
+import { GameModule } from './game/game.module';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
@@ -16,8 +16,8 @@ describe('AppComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule, HttpClientModule, MatSidenavModule, MatToolbarModule, PersonPropertiesCardComponent],
-      declarations: [AppComponent, GameComponent]
+      imports: [RouterTestingModule, HttpClientModule, MatSidenavModule, MatToolbarModule, GameModule, MatSnackBarModule],
+      declarations: [AppComponent]
     })
     fixture = TestBed.createComponent(AppComponent);
     loader = TestbedHarnessEnvironment.loader(fixture);
