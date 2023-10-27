@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SwapiService } from './services/swapi/swapi.service';
-import { forkJoin } from 'rxjs';
-import { getUniqueRandomIds, validatePersonMassInput } from './helpers';
+import { Observable, forkJoin } from 'rxjs';
+import { compareMassInputsAndDetermineWinner, getUniqueRandomIds, validatePersonMassInput } from './helpers';
 import { LoadingService } from './services/loading/loading.service';
 import { createPersonProperties } from './models/person';
 
@@ -13,9 +13,12 @@ import { createPersonProperties } from './models/person';
 export class GameComponent implements OnInit {
   leftCard = createPersonProperties();
   rightCard = createPersonProperties();
-  winner = '';
+  winner: string | undefined;
+  isLoading$: Observable<boolean>;
 
-  constructor(private swapiService: SwapiService, private loadingService: LoadingService) { }
+  constructor(private swapiService: SwapiService, private loadingService: LoadingService) {
+    this.isLoading$ = this.loadingService.getIsLoading();
+  }
 
   ngOnInit() {
     this.playGame();
@@ -36,16 +39,11 @@ export class GameComponent implements OnInit {
   }
 
   determineWinner() {
-    const findGreaterNumber = validatePersonMassInput(this.leftCard.mass) >= validatePersonMassInput(this.rightCard.mass);
-    if (findGreaterNumber) {
-      this.winner = 'Left Card';
-    } else {
-      this.winner = 'Right Card';
-    }
+    this.winner = compareMassInputsAndDetermineWinner(validatePersonMassInput(this.leftCard.mass), validatePersonMassInput(this.rightCard.mass));
   }
 
   playAgain() {
     this.playGame();
-    this.winner = '';
+    this.winner = undefined;
   }
 }

@@ -46,12 +46,12 @@ describe('PropertiesCardComponent', () => {
     const cardTitle = fixture.nativeElement.querySelector('mat-card-title').textContent;
     const cardSubtitle = fixture.nativeElement.querySelector('mat-card-subtitle').textContent;
     const homeworldText = fixture.nativeElement.querySelector('mat-card-content p').textContent;
-    const massText = fixture.nativeElement.querySelector('mat-card-content p:nth-child(2)').textContent;
+    const massText = fixture.nativeElement.querySelector('mat-card-content .mass').textContent;
 
     expect(cardTitle).toContain(sampleProperties.name);
     expect(cardSubtitle).toContain('Character');
     expect(homeworldText).toContain(sampleProperties.homeworld);
-    expect(massText).toContain(`Mass is ${sampleProperties.mass}`);
+    expect(massText).toContain(sampleProperties.mass);
   });
 
   it('should display a progress bar when isLoading$ is true', async () => {

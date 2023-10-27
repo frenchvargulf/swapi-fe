@@ -57,7 +57,7 @@ describe('GameComponent', () => {
     expect(swapiService.getRandomPerson).toHaveBeenCalledTimes(2);
     expect(component.leftCard).toEqual(getRandomPersonResponse);
     expect(component.rightCard).toEqual(getRandomPersonResponse);
-    expect(component.winner).toEqual('');
+    expect(component.winner).toEqual(undefined);
   });
 
   it('should determine the winner as Left Card if leftCard mass is greater', () => {
@@ -78,12 +78,12 @@ describe('GameComponent', () => {
     expect(component.winner).toBe('Right Card');
   });
   
-  it('should determine the winner as Left Card if masses are equal', () => {
+  it('should determine Noone as the winner if masses are equal', () => {
     component.leftCard.mass = '50';
     component.rightCard.mass = '50';
   
     component.determineWinner();
   
-    expect(component.winner).toBe('Left Card');
+    expect(component.winner).toBe('Noone');
   });
 });

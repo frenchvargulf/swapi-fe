@@ -6,6 +6,7 @@ import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
 import { LoadingService } from '../services/loading/loading.service';
 import { createPersonProperties } from '../models/person';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-properties-card',
@@ -16,9 +17,7 @@ import { createPersonProperties } from '../models/person';
 })
 export class PersonPropertiesCardComponent {
   @Input() properties = createPersonProperties();
-  @Input() isLoading$;
+  @Input() isLoading$ = of(false);
 
-  constructor(private loadingService: LoadingService) {
-    this.isLoading$ = this.loadingService.getIsLoading();
-  }
+  constructor() {}
 }

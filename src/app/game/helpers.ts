@@ -18,5 +18,17 @@ export const getUniqueRandomIds = (min: number, max: number) => {
 }
 
 export const validatePersonMassInput = (value: string): number => {
-    return parseInt(value) || 0;
+    return parseFloat(value) || 0;
+}
+
+export const compareMassInputsAndDetermineWinner = (leftCardMass: number, rightCardMass: number): string => {
+    const isEqualNumber = leftCardMass === rightCardMass;
+    const findGreaterNumber = leftCardMass > rightCardMass;
+    if (isEqualNumber) {
+        return 'Noone';
+    } if (findGreaterNumber) {
+        return 'Left Card';
+    } else {
+        return 'Right Card';
+    }
 }

@@ -1,10 +1,10 @@
 <div class="flex column">
   <div class="flex">
-    <app-properties-card data-cy="left-card" [properties]="leftCard"></app-properties-card>
-    <app-properties-card data-cy="right-card" [properties]="rightCard"></app-properties-card>  
+    <app-properties-card data-cy="left-card" [properties]="leftCard" [isLoading$]="isLoading$"></app-properties-card>
+    <app-properties-card data-cy="right-card" [properties]="rightCard" [isLoading$]="isLoading$"></app-properties-card>  
   </div>
   
-  <div data-cy="winner" class="center">{{winner}}</div>
+  <div data-cy="winner" class="center" *ngIf="winner">{{winner}} wins !</div>
   
   <button mat-button class="button" (click)="playAgain()" data-cy="play-again">Play again</button>
 </div>
