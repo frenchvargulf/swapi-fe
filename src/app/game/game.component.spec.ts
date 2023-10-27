@@ -37,7 +37,7 @@ describe('GameComponent', () => {
   });
 
   it('should call playGame on initialization', () => {
-    const getRandomPersonResponse = createPersonPropertiesMock({id: '1', mass: '70'} as Partial<PersonProperties>);
+    const getRandomPersonResponse = createPersonPropertiesMock({id: '1', mass: '82'} as Partial<PersonProperties>);
     swapiService.getRandomPerson.and.returnValue(of(getRandomPersonResponse));
 
     component.ngOnInit();

@@ -26,7 +26,7 @@ export class GameComponent implements OnInit {
 
   playGame() {
     this.loadingService.setIsLoadingValue(true);
-    const uniqueRandomIds = getUniqueRandomIds(1, 70);
+    const uniqueRandomIds = getUniqueRandomIds(1, 82);
     const firstRequest = this.swapiService.getRandomPerson(uniqueRandomIds[0]);
     const secondRequest = this.swapiService.getRandomPerson(uniqueRandomIds[1]);
 
