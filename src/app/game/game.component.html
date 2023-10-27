@@ -1,0 +1,10 @@
+<div class="flex column">
+  <div class="flex">
+    <app-properties-card [properties]="leftCard"></app-properties-card>
+    <app-properties-card [properties]="rightCard"></app-properties-card>  
+  </div>
+  
+  <div class="center">{{winner}}</div>
+  
+  <button mat-button class="button" (click)="playAgain()">Play again</button>
+</div>

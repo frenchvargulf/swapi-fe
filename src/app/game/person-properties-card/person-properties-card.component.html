@@ -1,0 +1,14 @@
+<mat-card class="properties-card">
+    <mat-card-header>
+        <mat-card-subtitle>Character</mat-card-subtitle>
+        <mat-card-title>{{properties.name}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <p>{{properties.homeworld}}</p>
+        <p>Mass is {{properties.mass}}</p>
+        <mat-divider></mat-divider>
+    </mat-card-content>
+    <mat-card-footer>
+        <mat-progress-bar *ngIf="(isLoading$ | async)" mode="indeterminate"></mat-progress-bar>
+    </mat-card-footer>
+</mat-card>

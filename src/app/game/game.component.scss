@@ -1,0 +1,19 @@
+.flex {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin: 15px 0;
+}
+
+.column {
+    flex-direction: column;
+}
+
+.center {
+    text-align: center;
+}
+
+.button {
+    max-width: 20%;
+    margin: 15px auto;
+}

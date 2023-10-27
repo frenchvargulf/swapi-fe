@@ -1,0 +1,9 @@
+mat-sidenav-container,
+mat-sidenav-content {
+    height: 100%;
+}
+
+mat-sidenav, mat-toolbar {
+    min-width: 250px;
+    width: 100%;
+}
