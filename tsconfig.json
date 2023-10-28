@@ -30,10 +30,9 @@
     "strictInputAccessModifiers": true,
     "strictTemplates": true
   },
+  "include": ["**/*.cy.ts"],
   "exclude": [
     "./cypress.config.ts",
-    "node_modules",
     "cypress",
-    "**/*.cy.tsx"
   ]
 }
