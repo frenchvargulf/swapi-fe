@@ -28,7 +28,7 @@ export class SwapiService {
     );
   }
 
-  getRandomStarship(randomId: number): Observable<any> {
+  getRandomStarship(randomId: number): Observable<StarshipProperties> {
     return this.http.get<SwapiResponse>(`${this.API_URL}/starships/${randomId}`).pipe(
       map(res => res.result.properties as StarshipProperties),
       catchError(() => {

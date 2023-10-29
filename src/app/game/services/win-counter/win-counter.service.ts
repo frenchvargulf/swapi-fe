@@ -8,8 +8,6 @@ export class WinCounterService {
   leftCardPlayerWins = new BehaviorSubject(0);
   rightCardPlayerWins = new BehaviorSubject(0);
 
-  constructor() { }
-
   getLeftCardPlayerWins() {
     return this.leftCardPlayerWins;
   }

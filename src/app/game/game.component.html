@@ -1,7 +1,8 @@
 <div class="flex column">
-  <button mat-button class="button" data-cy="change-mode" (click)="changeMode()" [disabled]="isLoading$ | async">Change Mode</button>
-  <button mat-button class="button" data-cy="play-again" (click)="playAgain()" [disabled]="isLoading$ | async">Play again</button>
-
+  <div class="flex">
+    <button mat-button class="button" data-cy="change-mode" color="primary" (click)="changeMode()" [disabled]="isLoading$ | async">Change Mode</button>
+    <button mat-button class="button" data-cy="play-again" color="primary" (click)="playAgain()" [disabled]="isLoading$ | async">Play again</button>  
+  </div>
   <div class="flex mobile-column">
     <div class="flex column player">
       <app-player-header [player]="'Player 1'" [winCount$]="leftCardPlayersWinCount$" [cypressSelector]="'left-card-win-count'"></app-player-header>

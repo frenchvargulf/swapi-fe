@@ -7,7 +7,7 @@ import { PersonProperties, createPersonProperties, isPerson } from './models/per
 import { WinCounterService } from './services/win-counter/win-counter.service';
 import { Winner } from './models/winner';
 import { GameMode } from './models/game-mode.mock';
-import { StarshipProperties, isStarship } from './models/starships';
+import { StarshipProperties, createStarshipProperties, isStarship } from './models/starships';
 
 @Component({
   selector: 'app-game',
@@ -38,7 +38,9 @@ export class GameComponent implements OnInit, OnDestroy {
 
   changeMode() {
     this.mode = this.mode === GameMode.People ? GameMode.Starships : GameMode.People;
-    this.propertyName = GameMode.People === this.mode ? 'Mass is' : 'Crew is';
+    this.propertyName = this.mode === GameMode.People ? 'Mass is' : 'Crew is';
+    this.leftCard = this.mode === GameMode.People ? createPersonProperties() : createStarshipProperties();
+    this.rightCard = this.mode === GameMode.People ? createPersonProperties() : createStarshipProperties();
     this.playAgain();
   }
 
@@ -50,7 +52,7 @@ export class GameComponent implements OnInit, OnDestroy {
     }
   }
 
-  playGame() {
+  private playGame() {
     this.loadingService.setIsLoadingValue(true);
     const uniqueRandomIds = getUniqueRandomIds(1, this.mode === GameMode.People ? 82 : 36);
 
