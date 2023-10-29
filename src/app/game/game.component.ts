@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { SwapiService } from './services/swapi/swapi.service';
 import { Observable, Subject, forkJoin, takeUntil } from 'rxjs';
 import { compareMassInputsAndDetermineWinner, getUniqueRandomIds, validatePersonMassInput } from './helpers/helpers';
@@ -8,7 +8,8 @@ import { createPersonProperties } from './models/person';
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',
-  styleUrls: ['./game.component.scss']
+  styleUrls: ['./game.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GameComponent implements OnInit, OnDestroy {
   leftCard = createPersonProperties();

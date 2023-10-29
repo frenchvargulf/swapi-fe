@@ -18,11 +18,15 @@ export const getUniqueRandomIds = (min: number, max: number) => {
 }
 
 export const validatePersonMassInput = (value: string): number | undefined => {
-    return parseFloat(value) || undefined;
+    let newValue = parseFloat(value) || undefined;
+    if (value === 'unknown') {
+        newValue = 0;
+    }
+    return newValue;
 }
 
 export const compareMassInputsAndDetermineWinner = (leftCardMass: number | undefined, rightCardMass: number | undefined): string => {
-    if (!leftCardMass || !rightCardMass) {
+    if (leftCardMass === undefined || rightCardMass === undefined) {
         return '';
     }
     const isEqualNumber = leftCardMass === rightCardMass;

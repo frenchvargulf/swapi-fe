@@ -4,9 +4,7 @@
         <mat-card-title>{{properties.name}}</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-        <p>{{properties.homeworld}}</p>
-        <div>Mass is <p class="mass">{{properties.mass}}</p></div>
-        <mat-divider></mat-divider>
+        <div>Mass is <span class="mass">{{properties.mass}}</span></div>
     </mat-card-content>
     <mat-card-footer>
         <mat-progress-bar *ngIf="(isLoading$ | async)" mode="indeterminate"></mat-progress-bar>

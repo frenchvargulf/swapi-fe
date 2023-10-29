@@ -39,8 +39,14 @@ describe('Helper Functions', () => {
             expect(parsedValue).toBe(50.5);
         });
 
-        it('should return 0 for invalid input', () => {
+        it('should return 0 for unknwon input', () => {
             const invalidInput = 'unknown';
+            const parsedValue = validatePersonMassInput(invalidInput);
+            expect(parsedValue).toBe(0);
+        });
+
+        it('should return undefined for undefined input', () => {
+            const invalidInput = 'undefined';
             const parsedValue = validatePersonMassInput(invalidInput);
             expect(parsedValue).toBe(undefined);
         });
