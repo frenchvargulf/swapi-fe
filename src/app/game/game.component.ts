@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SwapiService } from './services/swapi/swapi.service';
-import { Observable, forkJoin } from 'rxjs';
-import { compareMassInputsAndDetermineWinner, getUniqueRandomIds, validatePersonMassInput } from './helpers';
+import { Observable, Subject, forkJoin, takeUntil } from 'rxjs';
+import { compareMassInputsAndDetermineWinner, getUniqueRandomIds, validatePersonMassInput } from './helpers/helpers';
 import { LoadingService } from './services/loading/loading.service';
 import { createPersonProperties } from './models/person';
 
@@ -13,8 +13,9 @@ import { createPersonProperties } from './models/person';
 export class GameComponent implements OnInit {
   leftCard = createPersonProperties();
   rightCard = createPersonProperties();
-  winner: string | undefined;
+  winner: string | undefined = undefined;
   isLoading$: Observable<boolean>;
+  private destroy$ = new Subject<void>();
 
   constructor(private swapiService: SwapiService, private loadingService: LoadingService) {
     this.isLoading$ = this.loadingService.getIsLoading();
@@ -30,11 +31,13 @@ export class GameComponent implements OnInit {
     const firstRequest = this.swapiService.getRandomPerson(uniqueRandomIds[0]);
     const secondRequest = this.swapiService.getRandomPerson(uniqueRandomIds[1]);
 
-    forkJoin([firstRequest, secondRequest]).subscribe(results => {
+    forkJoin([firstRequest, secondRequest]).pipe(takeUntil(this.destroy$)).subscribe(results => {
       this.leftCard = results[0];
       this.rightCard = results[1];
       this.loadingService.setIsLoadingValue(false);
-      this.determineWinner();
+      if (this.leftCard.mass && this.rightCard.mass) {
+        this.determineWinner();
+      }
     });
   }
 
@@ -45,5 +48,10 @@ export class GameComponent implements OnInit {
   playAgain() {
     this.playGame();
     this.winner = undefined;
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

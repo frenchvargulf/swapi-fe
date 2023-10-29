@@ -7,8 +7,6 @@ import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 export class LoadingService {
   isLoading$ = new BehaviorSubject(true);
 
-  constructor() { }
-
   getIsLoading() {
     return this.isLoading$;
   }

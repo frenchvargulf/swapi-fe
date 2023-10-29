@@ -18,6 +18,4 @@ import { of } from 'rxjs';
 export class PersonPropertiesCardComponent {
   @Input() properties = createPersonProperties();
   @Input() isLoading$ = of(false);
-
-  constructor() {}
 }

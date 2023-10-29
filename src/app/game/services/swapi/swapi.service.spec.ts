@@ -42,4 +42,23 @@ describe('SwapiService', () => {
 
     req.flush({ result: { properties: mockPerson } });
   });
+
+  it('should handle error and open snackbar', async () => {
+    const randomId = 1;
+
+    const mockError = new Error('Mock HTTP error');
+    const mockResponse = {
+      error: mockError,
+    };
+
+    spyOn(swapiService['_snackBar'], 'open');
+
+    swapiService.getRandomPerson(randomId).subscribe(
+      () => {
+        expect(swapiService['_snackBar'].open).toHaveBeenCalledWith('Failed to get a Person! Play again !', 'Close')
+      });
+
+    const req = httpTestingController.expectOne(`${swapiService.API_URL}/people/${randomId}`);
+    req.flush(mockResponse, { status: 404, statusText: 'Not Found' });
+  });
 });

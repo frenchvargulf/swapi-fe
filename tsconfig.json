@@ -33,6 +33,5 @@
   "include": ["**/*.cy.ts"],
   "exclude": [
     "./cypress.config.ts",
-    "cypress",
   ]
 }

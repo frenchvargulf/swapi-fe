@@ -17,16 +17,19 @@ export const getUniqueRandomIds = (min: number, max: number) => {
     return Array.from(uniqueNumbers);
 }
 
-export const validatePersonMassInput = (value: string): number => {
-    return parseFloat(value) || 0;
+export const validatePersonMassInput = (value: string): number | undefined => {
+    return parseFloat(value) || undefined;
 }
 
-export const compareMassInputsAndDetermineWinner = (leftCardMass: number, rightCardMass: number): string => {
+export const compareMassInputsAndDetermineWinner = (leftCardMass: number | undefined, rightCardMass: number | undefined): string => {
+    if (!leftCardMass || !rightCardMass) {
+        return '';
+    }
     const isEqualNumber = leftCardMass === rightCardMass;
-    const findGreaterNumber = leftCardMass > rightCardMass;
+    const isGreaterNumber = leftCardMass > rightCardMass;
     if (isEqualNumber) {
         return 'Noone';
-    } if (findGreaterNumber) {
+    } if (isGreaterNumber) {
         return 'Left Card';
     } else {
         return 'Right Card';
