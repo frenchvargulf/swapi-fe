@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { SwapiService } from './services/swapi/swapi.service';
 import { Observable, Subject, forkJoin, takeUntil } from 'rxjs';
 import { compareMassInputsAndDetermineWinner, getUniqueRandomIds, validatePersonMassInput } from './helpers/helpers';
@@ -10,7 +10,7 @@ import { createPersonProperties } from './models/person';
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.scss']
 })
-export class GameComponent implements OnInit {
+export class GameComponent implements OnInit, OnDestroy {
   leftCard = createPersonProperties();
   rightCard = createPersonProperties();
   winner: string | undefined = undefined;
