@@ -1,6 +1,7 @@
 import { GameSelectors } from "cypress/selectors/selectors";
 import { compareMassInputsAndDetermineWinner, validatePersonMassInput } from '../../src/app/game/helpers/helpers';
 import { MOCK_RESPONSES } from "cypress/fixtures/MOCK-RESPONSES";
+import { Winner } from "src/app/game/models/winner";
 
 describe('Game', () => {
 
@@ -18,9 +19,10 @@ describe('Game', () => {
   it('should play the game and determine a winner', () => {
     cy.visit('/');
 
+    cy.log('Should play game on init with equal values and no winner')
     getCardMassInputsAndAssertWinner();
 
-    cy.log('Replay game');
+    cy.log('Replay game with different values and find a winner');
     const playAgainButton = cy.get(GameSelectors.PlayAgainButton);
     playAgainButton.click();
 
@@ -60,6 +62,24 @@ const getCardMassInputsAndAssertWinner = () => {
       rightCardMass = validatePersonMassInput(text);
       const expectedWinner = `${compareMassInputsAndDetermineWinner(leftCardMass!, rightCardMass!)}`;
       cy.get(GameSelectors.Winner).should('have.text', expectedWinner);
+      assertWinCount(expectedWinner);
     });
   });
 };
+
+const assertWinCount = (expectedWinner: string) => {
+  cy.get(GameSelectors.LeftCardWinCount).invoke('text').then((winCount) => {
+    const leftCardWinCountNumber = validatePersonMassInput(winCount);
+    cy.get(GameSelectors.RightCardWinCount).invoke('text').then((winCount) => {
+      const rightCardWinCountNumber = validatePersonMassInput(winCount);
+  
+      if (Winner.LeftCard === expectedWinner) {
+        cy.get(GameSelectors.LeftCardWinCount).should('have.text', leftCardWinCountNumber);
+        cy.get(GameSelectors.RightCardWinCount).should('have.text', rightCardWinCountNumber);  
+      } else if (Winner.RightCard === expectedWinner) {
+        cy.get(GameSelectors.LeftCardWinCount).should('have.text', leftCardWinCountNumber);
+        cy.get(GameSelectors.RightCardWinCount).should('have.text', rightCardWinCountNumber);  
+      }
+    })
+  })
+}

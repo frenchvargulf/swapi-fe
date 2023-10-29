@@ -5,9 +5,10 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { HttpClientModule } from "@angular/common/http";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PlayerHeaderComponent } from "./player-header/player-header.component";
 
 @NgModule({
-    declarations: [GameComponent],
+    declarations: [GameComponent, PlayerHeaderComponent],
     imports: [PersonPropertiesCardComponent, MatButtonModule, MatSnackBarModule, HttpClientModule, BrowserAnimationsModule],
     exports: [GameComponent],
 })

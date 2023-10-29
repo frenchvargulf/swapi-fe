@@ -4,6 +4,8 @@ import { Observable, Subject, forkJoin, takeUntil } from 'rxjs';
 import { compareMassInputsAndDetermineWinner, getUniqueRandomIds, validatePersonMassInput } from './helpers/helpers';
 import { LoadingService } from './services/loading/loading.service';
 import { createPersonProperties } from './models/person';
+import { WinCounterService } from './services/win-counter/win-counter.service';
+import { Winner } from './models/winner';
 
 @Component({
   selector: 'app-game',
@@ -17,8 +19,10 @@ export class GameComponent implements OnInit, OnDestroy {
   winner: string | undefined = undefined;
   isLoading$: Observable<boolean>;
   private destroy$ = new Subject<void>();
+  leftCardPlayersWinCount$ = this.winCounterService.getLeftCardPlayerWins();
+  rightCardPlayersWinCount$ = this.winCounterService.getRightCardPlayerWins();
 
-  constructor(private swapiService: SwapiService, private loadingService: LoadingService) {
+  constructor(private swapiService: SwapiService, private loadingService: LoadingService, private winCounterService: WinCounterService) {
     this.isLoading$ = this.loadingService.getIsLoading();
   }
 
@@ -44,6 +48,12 @@ export class GameComponent implements OnInit, OnDestroy {
 
   determineWinner() {
     this.winner = compareMassInputsAndDetermineWinner(validatePersonMassInput(this.leftCard.mass), validatePersonMassInput(this.rightCard.mass));
+
+    if (this.winner === Winner.LeftCard) {
+      this.winCounterService.increaseLeftCardPlayerWins();
+    } else if (this.winner === Winner.RightCard) {
+      this.winCounterService.increaseRightCardPlayerWins();
+    }
   }
 
   playAgain() {

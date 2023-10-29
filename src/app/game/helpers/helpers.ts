@@ -1,3 +1,5 @@
+import { Winner } from '../models/winner';
+
 export const getRandomNumber = (min: number, max: number) => {
     return Math.floor(Math.random() * (max - min)) + min;
 }
@@ -18,11 +20,12 @@ export const getUniqueRandomIds = (min: number, max: number) => {
 }
 
 export const validatePersonMassInput = (value: string): number | undefined => {
-    let newValue = parseFloat(value) || undefined;
-    if (value === 'unknown') {
-        newValue = 0;
+    const parsedValue = parseFloat(value);
+    let validatedValue = parsedValue || undefined;
+    if (value === 'unknown' || parsedValue === 0) {
+        validatedValue = 0;
     }
-    return newValue;
+    return validatedValue;
 }
 
 export const compareMassInputsAndDetermineWinner = (leftCardMass: number | undefined, rightCardMass: number | undefined): string => {
@@ -32,10 +35,10 @@ export const compareMassInputsAndDetermineWinner = (leftCardMass: number | undef
     const isEqualNumber = leftCardMass === rightCardMass;
     const isGreaterNumber = leftCardMass > rightCardMass;
     if (isEqualNumber) {
-        return 'Noone';
+        return Winner.Noone;
     } if (isGreaterNumber) {
-        return 'Left Card';
+        return Winner.LeftCard;
     } else {
-        return 'Right Card';
+        return Winner.RightCard;
     }
 }

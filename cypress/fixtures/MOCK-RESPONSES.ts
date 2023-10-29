@@ -96,7 +96,7 @@ export const MOCK_RESPONSES = [
         "result": {
             "properties": {
                 "height": "175",
-                "mass": "40",
+                "mass": "unknown",
                 "hair_color": "none",
                 "skin_color": "red",
                 "eye_color": "yellow",
