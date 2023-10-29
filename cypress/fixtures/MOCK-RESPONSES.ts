@@ -208,5 +208,67 @@ export const MOCK_RESPONSES = [
             "__v": 0
         }
     },
-    {"message":"not found"}
+    {"message":"not found"},
+    {
+        "message": "ok",
+        "result": {
+            "properties": {
+                "model": "Eta-2 Actis-class light interceptor",
+                "starship_class": "starfighter",
+                "manufacturer": "Kuat Systems Engineering",
+                "cost_in_credits": "320000",
+                "length": "5.47",
+                "crew": "10",
+                "passengers": "0",
+                "max_atmosphering_speed": "1500",
+                "hyperdrive_rating": "1.0",
+                "MGLT": "unknown",
+                "cargo_capacity": "60",
+                "consumables": "2 days",
+                "pilots": [
+                    "https://www.swapi.tech/api/people/10",
+                    "https://www.swapi.tech/api/people/11"
+                ],
+                "created": "2020-09-17T17:55:06.604Z",
+                "edited": "2020-09-17T17:55:06.604Z",
+                "name": "Jedi Interceptor",
+                "url": "https://www.swapi.tech/api/starships/65"
+            },
+            "description": "A Starship",
+            "_id": "5f63a34fee9fd7000499be3d",
+            "uid": "65",
+            "__v": 0
+        }
+    },
+    {
+        "message": "ok",
+        "result": {
+            "properties": {
+                "model": "Eta-2 Actis-class light interceptor",
+                "starship_class": "starfighter",
+                "manufacturer": "Kuat Systems Engineering",
+                "cost_in_credits": "320000",
+                "length": "5.47",
+                "crew": "1908",
+                "passengers": "0",
+                "max_atmosphering_speed": "1500",
+                "hyperdrive_rating": "1.0",
+                "MGLT": "unknown",
+                "cargo_capacity": "60",
+                "consumables": "2 days",
+                "pilots": [
+                    "https://www.swapi.tech/api/people/10",
+                    "https://www.swapi.tech/api/people/11"
+                ],
+                "created": "2020-09-17T17:55:06.604Z",
+                "edited": "2020-09-17T17:55:06.604Z",
+                "name": "Jedi Interceptor",
+                "url": "https://www.swapi.tech/api/starships/65"
+            },
+            "description": "A Starship",
+            "_id": "5f63a34fee9fd7000499be3d",
+            "uid": "65",
+            "__v": 0
+        }
+    }
 ];

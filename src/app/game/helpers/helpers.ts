@@ -19,7 +19,7 @@ export const getUniqueRandomIds = (min: number, max: number) => {
     return Array.from(uniqueNumbers);
 }
 
-export const validatePersonMassInput = (value: string): number | undefined => {
+export const validateInput = (value: string): number | undefined => {
     const parsedValue = parseFloat(value);
     let validatedValue = parsedValue || undefined;
     if (value === 'unknown' || parsedValue === 0) {
@@ -28,12 +28,12 @@ export const validatePersonMassInput = (value: string): number | undefined => {
     return validatedValue;
 }
 
-export const compareMassInputsAndDetermineWinner = (leftCardMass: number | undefined, rightCardMass: number | undefined): string => {
-    if (leftCardMass === undefined || rightCardMass === undefined) {
+export const compareValuesAndDetermineWinner = (leftCardValue: number | undefined, rightCardValue: number | undefined): string => {
+    if (leftCardValue === undefined || rightCardValue === undefined) {
         return '';
     }
-    const isEqualNumber = leftCardMass === rightCardMass;
-    const isGreaterNumber = leftCardMass > rightCardMass;
+    const isEqualNumber = leftCardValue === rightCardValue;
+    const isGreaterNumber = leftCardValue > rightCardValue;
     if (isEqualNumber) {
         return Winner.Noone;
     } if (isGreaterNumber) {

@@ -1,3 +1,5 @@
+import { StarshipProperties } from "./starships";
+
 export interface PersonProperties {
     birth_year: string, 
     eye_color: string, 
@@ -36,4 +38,8 @@ export function createPersonProperties(): PersonProperties {
         url: [],
         vehicles: []
       }
+}
+
+export function isPerson(properties: StarshipProperties | PersonProperties): properties is PersonProperties {
+    return 'mass' in properties;
 }

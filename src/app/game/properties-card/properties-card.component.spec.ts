@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { PersonPropertiesCardComponent } from './person-properties-card.component';
+import { PropertiesCardComponent } from './properties-card.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDividerModule } from '@angular/material/divider';
@@ -12,19 +12,19 @@ import { MatProgressBarHarness } from '@angular/material/progress-bar/testing';
 
 
 describe('PropertiesCardComponent', () => {
-  let component: PersonPropertiesCardComponent;
-  let fixture: ComponentFixture<PersonPropertiesCardComponent>;
+  let component: PropertiesCardComponent;
+  let fixture: ComponentFixture<PropertiesCardComponent>;
   let loadingService: jasmine.SpyObj<LoadingService>;
 
   beforeEach(() => {
     const loadingServiceSpy = jasmine.createSpyObj('LoadingService', ['getIsLoading']);
 
     TestBed.configureTestingModule({
-      imports: [MatCardModule, MatProgressBarModule, MatDividerModule, CommonModule, PersonPropertiesCardComponent],
+      imports: [MatCardModule, MatProgressBarModule, MatDividerModule, CommonModule, PropertiesCardComponent],
       providers: [{ provide: LoadingService, useValue: loadingServiceSpy }],
     });
 
-    fixture = TestBed.createComponent(PersonPropertiesCardComponent);
+    fixture = TestBed.createComponent(PropertiesCardComponent);
     component = fixture.componentInstance;
     loadingService = TestBed.inject(LoadingService) as jasmine.SpyObj<LoadingService>;
   });
@@ -45,11 +45,9 @@ describe('PropertiesCardComponent', () => {
 
     const cardTitle = fixture.nativeElement.querySelector('mat-card-title').textContent;
     const cardSubtitle = fixture.nativeElement.querySelector('mat-card-subtitle').textContent;
-    const massText = fixture.nativeElement.querySelector('mat-card-content .mass').textContent;
 
     expect(cardTitle).toContain(sampleProperties.name);
     expect(cardSubtitle).toContain('Character');
-    expect(massText).toContain(sampleProperties.mass);
   });
 
   it('should display a progress bar when isLoading$ is true', async () => {

@@ -1,4 +1,4 @@
-import { compareMassInputsAndDetermineWinner, getRandomNumber, getUniqueRandomIds, validatePersonMassInput } from "./helpers";
+import { compareValuesAndDetermineWinner, getRandomNumber, getUniqueRandomIds, validateInput } from "./helpers";
 
 
 describe('Helper Functions', () => {
@@ -32,45 +32,45 @@ describe('Helper Functions', () => {
         });
     });
 
-    describe('validatePersonMassInput', () => {
+    describe('validateInput', () => {
         it('should parse a valid number input', () => {
             const validInput = '50.5';
-            const parsedValue = validatePersonMassInput(validInput);
+            const parsedValue = validateInput(validInput);
             expect(parsedValue).toBe(50.5);
         });
 
         it('should return 0 for unknwon input', () => {
             const invalidInput = 'unknown';
-            const parsedValue = validatePersonMassInput(invalidInput);
+            const parsedValue = validateInput(invalidInput);
             expect(parsedValue).toBe(0);
         });
 
         it('should return undefined for undefined input', () => {
             const invalidInput = 'undefined';
-            const parsedValue = validatePersonMassInput(invalidInput);
+            const parsedValue = validateInput(invalidInput);
             expect(parsedValue).toBe(undefined);
         });
     });
 
-    describe('compareMassInputsAndDetermineWinner', () => {
+    describe('compareValuesAndDetermineWinner', () => {
         it('should determine "Noone" as the winner for equal masses', () => {
             const leftMass = 60;
             const rightMass = 60;
-            const winner = compareMassInputsAndDetermineWinner(leftMass, rightMass);
+            const winner = compareValuesAndDetermineWinner(leftMass, rightMass);
             expect(winner).toBe('Noone');
         });
 
         it('should determine "Left Card" as the winner for greater left mass', () => {
             const leftMass = 70;
             const rightMass = 60;
-            const winner = compareMassInputsAndDetermineWinner(leftMass, rightMass);
+            const winner = compareValuesAndDetermineWinner(leftMass, rightMass);
             expect(winner).toBe('Left Card');
         });
 
         it('should determine "Right Card" as the winner for greater right mass', () => {
             const leftMass = 60;
             const rightMass = 70;
-            const winner = compareMassInputsAndDetermineWinner(leftMass, rightMass);
+            const winner = compareValuesAndDetermineWinner(leftMass, rightMass);
             expect(winner).toBe('Right Card');
         });
     });
